@@ -10,9 +10,36 @@
   <div class="container">
     <h1>🃏 翻牌配对小游戏</h1>
     
+    <div class="challenge-info hidden" id="challengeInfo">
+      <div class="challenge-header">
+        <span class="challenge-title" id="challengeTitle">🎯 挑战模式</span>
+        <button id="abandonChallengeBtn" class="btn btn-danger btn-small">放弃挑战</button>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps" id="progressSteps"></div>
+      </div>
+      <div class="challenge-stats">
+        <div class="stat-item">
+          <span class="stat-label">⏱️ 累计用时</span>
+          <span class="stat-value" id="totalTimeEl">00:00</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">💔 失败次数</span>
+          <span class="stat-value" id="failuresEl">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">🔥 连胜</span>
+          <span class="stat-value" id="winStreakEl">0</span>
+        </div>
+      </div>
+    </div>
+
     <div class="game-info">
       <div class="info-item">
-        <span class="label">⏱️ 用时</span>
+        <span class="label">⏱️ 本关用时</span>
         <span id="timer" class="value">00:00</span>
       </div>
       <div class="info-item">
@@ -28,8 +55,40 @@
     <div class="game-board" id="gameBoard"></div>
 
     <div class="controls">
+      <button id="startChallengeBtn" class="btn btn-success">🎯 开始挑战</button>
       <button id="restartBtn" class="btn btn-primary">🔄 重新开始</button>
       <button id="leaderboardBtn" class="btn btn-secondary">🏆 排行榜</button>
+    </div>
+
+    <div id="startChallengeModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>🎯 开始连续挑战</h2>
+        <p class="challenge-desc">共5个关卡，难度递增！完成全部关卡即可登上排行榜。</p>
+        <div class="levels-preview" id="levelsPreview"></div>
+        <div class="input-group">
+          <label for="challengePlayerName">输入你的名字：</label>
+          <input type="text" id="challengePlayerName" placeholder="匿名玩家" maxlength="10">
+        </div>
+        <button id="confirmStartChallengeBtn" class="btn btn-success">开始挑战！</button>
+        <button id="cancelStartChallengeBtn" class="btn btn-secondary">取消</button>
+      </div>
+    </div>
+
+    <div id="levelTransitionModal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="transitionTitle">🎉 关卡通过！</h2>
+        <div id="transitionContent"></div>
+        <button id="nextLevelBtn" class="btn btn-success">进入下一关</button>
+      </div>
+    </div>
+
+    <div id="challengeCompleteModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>🏆 恭喜完成全部挑战！</h2>
+        <div id="challengeCompleteContent"></div>
+        <button id="backToNormalBtn" class="btn btn-primary">返回普通模式</button>
+        <button id="restartChallengeBtn" class="btn btn-success">再次挑战</button>
+      </div>
     </div>
 
     <div id="winModal" class="modal hidden">
